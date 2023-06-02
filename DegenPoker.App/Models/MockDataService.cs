@@ -79,9 +79,9 @@ namespace DegenPokerApp.App.Models
         {
             return new List<Stakes>()
             {
-                new Stakes { StakeId = 1, StakeName = "1/2" },
-                new Stakes { StakeId = 2, StakeName = "10/20/40" },
-                new Stakes { StakeId = 3, StakeName = "50/100/200" }
+                new Stakes { StakeId = 1, StakeName = "1/2", UserId = 2 },
+                new Stakes { StakeId = 2, StakeName = "10/20/40", UserId = 1 },
+                new Stakes { StakeId = 3, StakeName = "50/100/200", UserId = 1 }
             };
         }
 
@@ -89,10 +89,10 @@ namespace DegenPokerApp.App.Models
         {
             return new List<PokerClub>()
             {
-                new PokerClub { PokerClubId = 1, PokerClubName = "Nuts" },
-                new PokerClub { PokerClubId = 2, PokerClubName = "Route66" },
-                new PokerClub { PokerClubId = 3, PokerClubName = "Queens" },
-                new PokerClub { PokerClubId = 4, PokerClubName = "Ipkr" }
+                new PokerClub { PokerClubId = 1, PokerClubName = "Nuts", UserId=1 },
+                new PokerClub { PokerClubId = 2, PokerClubName = "Route66", UserId=1 },
+                new PokerClub { PokerClubId = 3, PokerClubName = "Queens", UserId=1 },
+                new PokerClub { PokerClubId = 4, PokerClubName = "Ipkr", UserId=1 }
             };
 
         }
