@@ -1,0 +1,28 @@
+﻿@page "/sites"
+
+<h2>Poker Club Overview</h2>
+
+@if (PokerClubs == null)
+{
+    <p><em>Loading ... </em></p>
+}
+else
+{
+    <table class="table table-light">
+        <thead class="table-primary">
+            <tr>
+                <th>Club Id</th>
+                <th>Club Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pokerClub in PokerClubs)
+            {
+                <tr>
+                    <td>@pokerClub.PokerClubId</td>
+                    <td>@pokerClub.PokerClubName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
