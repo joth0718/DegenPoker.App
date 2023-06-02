@@ -74,6 +74,27 @@ namespace DegenPokerApp.App.Models
             }
         }
 
+        public static List<Stakes> Stakes
+        {
+            get
+            {
+                //we will use these in initialization of Users
+                _countries ??= InitializeMockCountries();
+
+                _gameTypes ??= InitializeMockGameTypes();
+
+                _sessions ??= InitializeMockPokerSessions();
+
+                _stakes ??= InitializeMockStakes();
+
+                _pokerClubs ??= InitializeMockPokerClubs();
+
+                _users ??= InitializeMockUsers();
+
+                return _stakes;
+            }
+        }
+
 
         private static List<Stakes> InitializeMockStakes()
         {

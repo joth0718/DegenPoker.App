@@ -1,0 +1,26 @@
+﻿@page "/stakes"
+
+<h2>Stakes Overview</h2>
+
+@if (Stakes == null)
+{
+    <p><em>Loading ... </em></p>
+}
+else
+{
+    <table class="table table-light">
+        <thead class="table-primary">
+            <tr>
+                <th>Stake</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stakes in Stakes)
+            {
+                <tr>
+                    <td>@stakes.StakeName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
