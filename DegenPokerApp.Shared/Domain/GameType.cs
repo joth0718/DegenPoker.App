@@ -2,7 +2,7 @@
 {
     public class GameType
     {
-        public string GameTypeId { get; set; }
+        public string GameTypeId { get; set; } = string.Empty;
         public string? GameTypeName { get; set; }
     }
 }
