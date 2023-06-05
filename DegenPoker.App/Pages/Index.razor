@@ -2,5 +2,9 @@
 
 <h1 class="page-title">Welcome to Degens AWESOME Poker App</h1>
 <br />
-<h3>Using this app you can log ur awesome poker sessions, add poker sites and stakes</h3>
+
+@foreach (var widgetType in Widgets)
+{
+    <DynamicComponent Type="widgetType"></DynamicComponent>
+}
 

@@ -8,9 +8,18 @@ namespace DegenPoker.App.Pages
 
         public List<PokerSession>? PokerSessions { get; set; } = default!;
 
+        private PokerSession? _selectedSession;
+
+        private string Title = "Session overview";
+
         protected override void OnInitialized()
         {
             PokerSessions = MockDataService.PokerSessions;
+        }
+
+        public void ShowQuickViewPopup(PokerSession selectedSession)
+        {
+            _selectedSession = selectedSession;
         }
 
     }

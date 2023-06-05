@@ -1,0 +1,56 @@
+﻿@if (_session != null)
+{
+    <div class="modal fade show d-block" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleLabel">Session Quick View</h5>
+                    <button type="button" class="close btn btn-lg" @onclick="Close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col row">
+                        <div class="col-12 col-sm-8">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Poker Session Id</label>
+                                <div class="col-sm-7">
+                                    <label type="text" class="form-control-plaintext">@_session.PokerSessionId</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Session Date</label>
+                                <div class="col-sm-7">
+                                    <label type="text" readonly class="form-control-plaintext">@_session.SessionDate.ToShortDateString()</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Hands</label>
+                                <div class="col-sm-7">
+                                    <label type="text" readonly class="form-control-plaintext">@_session.NrOfHands</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Stakes</label>
+                                <div class="col-sm-7">
+                                    <label type="text" readonly class="form-control-plaintext">@_session.StakesId</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Result</label>
+                                <div class="col-sm-7">
+                                    <label type="text" readonly class="form-control-plaintext">@_session.Result</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary" @onclick="Close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

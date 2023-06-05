@@ -1,5 +1,5 @@
 ﻿@page "/sessions"
-
+<PageTitle>@Title</PageTitle>
 <h2>Sessions Overview</h2>
 
 @if (PokerSessions == null)
@@ -8,33 +8,14 @@
 }
 else
 {
-    <table class="table table-light">
-        <thead class="table-primary">
-            <tr>
-                <th>Date</th>
-                <th>Hands</th>
-                <th>Club</th>
-                <th>Type</th>
-                <th>Game</th>
-                <th>Stakes</th>
-                <th>Result</th>
-                <th>Comment</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var pokerSession in PokerSessions)
-            {
-                <tr>
-                    <td>@pokerSession.SessionDate</td>
-                    <td>@pokerSession.NrOfHands</td>
-                    <td>@pokerSession.PokerClubId</td>
-                    <td>@pokerSession.GameTypeId</td>
-                    <td>@pokerSession.GameId</td>
-                    <td>@pokerSession.StakesId</td>
-                    <td>@pokerSession.Result</td>
-                    <td>@pokerSession.Comment</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <QuickViewPopup PokerSession="_selectedSession"></QuickViewPopup>
+    <div class="row">
+        @foreach (var pokerSession in PokerSessions)
+        {
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <SessionCard PokerSession="pokerSession" PokerSessionQuickViewClicked="ShowQuickViewPopup"></SessionCard>
+            </div>
+        }
+    </div>
 }
+

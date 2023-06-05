@@ -148,7 +148,7 @@ namespace DegenPokerApp.App.Models
             };
             var s3 = new PokerSession
             {
-                PokerSessionId = 2,
+                PokerSessionId = 3,
                 Comment = "I'm a horse",
                 GameTypeId = 1,
                 StakesId = 1,
@@ -161,7 +161,7 @@ namespace DegenPokerApp.App.Models
             };
             var s4 = new PokerSession
             {
-                PokerSessionId = 2,
+                PokerSessionId = 4,
                 Comment = "I'm a grizzly",
                 GameTypeId = 1,
                 StakesId = 1,
@@ -172,8 +172,21 @@ namespace DegenPokerApp.App.Models
                 Result = 7123,
                 SessionDate = new DateTime(2023, 6, 2)
             };
+            var s5 = new PokerSession
+            {
+                PokerSessionId = 5,
+                Comment = "",
+                GameTypeId = 1,
+                StakesId = 1,
+                UserId = 2,
+                GameId = 2,
+                NrOfHands = 2832,
+                PokerClubId = 2,
+                Result = 7123,
+                SessionDate = new DateTime(2023, 6, 2)
+            };
 
-            return new List<PokerSession>() { s1, s2, s3, s4 };
+            return new List<PokerSession>() { s1, s2, s3, s4, s5 };
         }
 
         private static List<User> InitializeMockUsers()

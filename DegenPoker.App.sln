@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DegenPoker.App", "DegenPoke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DegenPokerApp.Shared", "DegenPokerApp.Shared\DegenPokerApp.Shared.csproj", "{5E12FDDC-8298-4B17-83CB-134F51B9DFBA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DegenPokerApp.Api", "DegenPokerApp.Api\DegenPokerApp.Api.csproj", "{FE47079D-2159-4AD6-84A4-1482CCB8A836}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5E12FDDC-8298-4B17-83CB-134F51B9DFBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E12FDDC-8298-4B17-83CB-134F51B9DFBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E12FDDC-8298-4B17-83CB-134F51B9DFBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE47079D-2159-4AD6-84A4-1482CCB8A836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE47079D-2159-4AD6-84A4-1482CCB8A836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE47079D-2159-4AD6-84A4-1482CCB8A836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE47079D-2159-4AD6-84A4-1482CCB8A836}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

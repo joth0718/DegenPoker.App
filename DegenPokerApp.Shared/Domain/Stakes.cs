@@ -2,8 +2,8 @@
 {
     public class Stakes
     {
-        public int StakeId { get; set; }
-        public int UserId { get; set; }
+        public string StakeId { get; set; } = string.Empty;
+        public string UserId { get; set; } = string.Empty;
         public string? StakeName { get; set; }
     }
 }

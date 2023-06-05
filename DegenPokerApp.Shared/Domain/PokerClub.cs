@@ -2,8 +2,8 @@
 {
     public class PokerClub
     {
-        public int PokerClubId { get; set; }
-        public int UserId { get; set; }
+        public string PokerClubId { get; set; } = string.Empty;
+        public string UserId { get; set; } = string.Empty;
         public string PokerClubName { get; set; } = string.Empty;
     }
 }

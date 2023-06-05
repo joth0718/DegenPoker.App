@@ -9,5 +9,12 @@
             <h3>Comment: </h3><br />
             @PokerSession.Comment
         </div>
+        <button class="btn btn-primary btn-sm mb-1"
+        @onclick="@(async () => await PokerSessionQuickViewClicked.InvokeAsync(PokerSession))">
+            Qick View
+        </button>
+        <button class="btn btn-outline-primary btn-sm mb-1" @onclick="(() => NavigateToDetails(PokerSession))">
+            Full Details
+        </button>
     </div>
 </div>

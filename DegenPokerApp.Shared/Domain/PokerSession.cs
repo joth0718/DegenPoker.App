@@ -2,12 +2,12 @@
 {
     public class PokerSession
     {
-        public int PokerSessionId { get; set; }
-        public int UserId { get; set; }
-        public int StakesId { get; set; }
-        public int PokerClubId { get; set; }
-        public int GameTypeId { get; set; }
-        public int GameId { get; set; }
+        public string PokerSessionId { get; set; } = string.Empty;
+        public string UserId { get; set; } = string.Empty;
+        public string StakesId { get; set; } = string.Empty;
+        public string PokerClubId { get; set; } = string.Empty;
+        public string GameTypeId { get; set; } = string.Empty;
+        public string GameId { get; set; } = string.Empty;
         public DateTime SessionDate { get; set; }
         public int NrOfHands { get; set; }
         public string? Comment { get; set; }

@@ -1,0 +1,73 @@
+﻿@page "/sessiondetail/{SessionId}"
+
+<section class="employee-detail">
+    <h1 class="page-title">Details for session on @Session.SessionDate at @Session.PokerClubId</h1>
+    <br />
+    <div class="col-12 row">
+        <div class="col-2 text-center">
+            <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Session.PokerSessionId}.jpg")" class="img-fluid rounded-circle Session-detail-img" />
+        </div>
+        <div class="col-10 row">
+            <div class="col-12 col-xxl-8">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Session ID</label>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@Session.PokerSessionId</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Date</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Session.SessionDate.ToShortDateString();</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Club</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Session.PokerClubId</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Gametype</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Session.GameTypeId</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Game</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Session.GameId</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Hands</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Session.NrOfHands</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Result</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Session.Result</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Comment</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Session.Comment</label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-12 col-xxl-4">
+            </div>
+        </div>
+    </div>
+</section>
