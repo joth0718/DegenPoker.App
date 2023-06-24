@@ -81,6 +81,34 @@ namespace DegenPokerApp.Api.Data
             await _container.DeleteItemAsync<PokerClub>(id, new PartitionKey(userId));
         }
 
+
+        #endregion
+
+        #region Sessions
+
+        internal async Task<IEnumerable<PokerSession>> GetAllPokerSessions()
+        {
+            var sqlQueryGetAll = "SELECT * FROM C";
+            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryGetAll);
+
+            FeedIterator<PokerSession> queryResultSetIterator = _container.GetItemQueryIterator<PokerSession>(queryDefinition);
+            List<PokerSession> pokerSessions = new List<PokerSession>();
+
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                FeedResponse<PokerSession> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (PokerSession pokerSession in currentResultSet)
+                {
+                    pokerSessions.Add(pokerSession);
+                }
+            }
+            return pokerSessions;
+        }
+
+        internal async Task<PokerSession> GetPokerSessionDetails(string id, string userId)
+        {
+            return await _container.ReadItemAsync<PokerSession>(id, new PartitionKey(userId));
+        }
         #endregion
     }
 
