@@ -29,9 +29,9 @@ namespace DegenPoker.App.Services
             return null;
         }
 
-        public async Task DeletePokerClub(string id, string pokerClubId)
+        public async Task DeletePokerClub(string id, string userId)
         {
-            await _httpClient.DeleteAsync($"api/PokerClub/{id}/{pokerClubId}");
+            await _httpClient.DeleteAsync($"api/PokerClub/{id}/{userId}");
         }
 
         public async Task<IEnumerable<PokerClub>> GetAllPokerClubs()
@@ -42,10 +42,10 @@ namespace DegenPoker.App.Services
                 { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<PokerClub> GetPokerClubDetails(string id, string pokerClubId)
+        public async Task<PokerClub> GetPokerClubDetails(string id, string userId)
         {
             return await JsonSerializer.DeserializeAsync<PokerClub>(
-                await _httpClient.GetStreamAsync($"api/PokerClub/{id}/{pokerClubId}"), new
+                await _httpClient.GetStreamAsync($"api/PokerClub/{id}/{userId}"), new
                 JsonSerializerOptions()
                 { PropertyNameCaseInsensitive = true });
         }

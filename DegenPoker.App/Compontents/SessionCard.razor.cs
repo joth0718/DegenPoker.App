@@ -16,7 +16,7 @@ namespace DegenPoker.App.Compontents
 
         public void NavigateToDetails(PokerSession selectedSession)
         {
-            NavigationManager.NavigateTo($"/sessiondetail/{selectedSession.PokerSessionId}");
+            NavigationManager.NavigateTo($"/sessiondetail/{selectedSession.id}");
         }
     }
 }

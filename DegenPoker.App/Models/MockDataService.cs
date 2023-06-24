@@ -1,6 +1,8 @@
-﻿namespace DegenPokerApp.App.Models
+﻿using DegenPokerApp.Shared.Domain;
+
+namespace DegenPokerApp.App.Models
 {
-    /*
+
     public class MockDataService
     {
         private static List<User>? _users = default!;
@@ -15,9 +17,9 @@
             get
             {
                 //we will use these in initialization of Users
-                _countries ??= InitializeMockCountries();
+                // _countries ??= InitializeMockCountries();
 
-                _gameTypes ??= InitializeMockGameTypes();
+                // _gameTypes ??= InitializeMockGameTypes();
 
                 _sessions ??= InitializeMockPokerSessions();
 
@@ -25,7 +27,7 @@
 
                 _pokerClubs ??= InitializeMockPokerClubs();
 
-                _users ??= InitializeMockUsers();
+                //  _users ??= InitializeMockUsers();
 
                 return _users;
             }
@@ -36,9 +38,9 @@
             get
             {
                 //we will use these in initialization of Users
-                _countries ??= InitializeMockCountries();
+                //  _countries ??= InitializeMockCountries();
 
-                _gameTypes ??= InitializeMockGameTypes();
+                //                _gameTypes ??= InitializeMockGameTypes();
 
                 _sessions ??= InitializeMockPokerSessions();
 
@@ -46,7 +48,7 @@
 
                 _pokerClubs ??= InitializeMockPokerClubs();
 
-                _users ??= InitializeMockUsers();
+                //              _users ??= InitializeMockUsers();
 
                 return _pokerClubs;
             }
@@ -57,9 +59,9 @@
             get
             {
                 //we will use these in initialization of Users
-                _countries ??= InitializeMockCountries();
+                //        _countries ??= InitializeMockCountries();
 
-                _gameTypes ??= InitializeMockGameTypes();
+                //        _gameTypes ??= InitializeMockGameTypes();
 
                 _sessions ??= InitializeMockPokerSessions();
 
@@ -67,7 +69,7 @@
 
                 _pokerClubs ??= InitializeMockPokerClubs();
 
-                _users ??= InitializeMockUsers();
+                //      _users ??= InitializeMockUsers();
 
                 return _sessions;
             }
@@ -78,9 +80,9 @@
             get
             {
                 //we will use these in initialization of Users
-                _countries ??= InitializeMockCountries();
+                //     _countries ??= InitializeMockCountries();
 
-                _gameTypes ??= InitializeMockGameTypes();
+                //   _gameTypes ??= InitializeMockGameTypes();
 
                 _sessions ??= InitializeMockPokerSessions();
 
@@ -88,7 +90,7 @@
 
                 _pokerClubs ??= InitializeMockPokerClubs();
 
-                _users ??= InitializeMockUsers();
+                // _users ??= InitializeMockUsers();
 
                 return _stakes;
             }
@@ -99,9 +101,9 @@
         {
             return new List<Stakes>()
             {
-                new Stakes { StakeId = 1, StakeName = "1/2", UserId = 2 },
-                new Stakes { StakeId = 2, StakeName = "10/20/40", UserId = 1 },
-                new Stakes { StakeId = 3, StakeName = "50/100/200", UserId = 1 }
+                new Stakes { StakeId = Guid.NewGuid().ToString(), StakeName = "1/2", UserId = Guid.NewGuid().ToString() },
+                new Stakes { StakeId = Guid.NewGuid().ToString(), StakeName = "10/20/40", UserId = Guid.NewGuid().ToString() },
+                new Stakes { StakeId = Guid.NewGuid().ToString(), StakeName = "50/100/200", UserId = Guid.NewGuid().ToString() }
             };
         }
 
@@ -109,10 +111,10 @@
         {
             return new List<PokerClub>()
             {
-                new PokerClub { PokerClubId = 1, PokerClubName = "Nuts", UserId=1 },
-                new PokerClub { PokerClubId = 2, PokerClubName = "Route66", UserId=1 },
-                new PokerClub { PokerClubId = 3, PokerClubName = "Queens", UserId=1 },
-                new PokerClub { PokerClubId = 4, PokerClubName = "Ipkr", UserId=1 }
+                new PokerClub { PokerClubId = Guid.NewGuid().ToString(), PokerClubName = "Nuts", UserId=Guid.NewGuid().ToString()},
+                new PokerClub { PokerClubId = Guid.NewGuid().ToString(), PokerClubName = "Route66", UserId=Guid.NewGuid().ToString() },
+                new PokerClub { PokerClubId = Guid.NewGuid().ToString(), PokerClubName = "Queens", UserId=Guid.NewGuid().ToString() },
+                new PokerClub { PokerClubId = Guid.NewGuid().ToString(), PokerClubName = "Ipkr", UserId=Guid.NewGuid().ToString() }
             };
 
         }
@@ -121,73 +123,68 @@
         {
             var s1 = new PokerSession
             {
-                PokerSessionId = 1,
+                id = Guid.NewGuid().ToString(),
                 Comment = "TILT",
-                GameTypeId = 1,
-                GameId = 1,
-                UserId = 1,
-                StakesId = 3,
+                GameTypeId = Guid.NewGuid().ToString(),
+                UserId = Guid.NewGuid().ToString(),
+                StakesId = Guid.NewGuid().ToString(),
                 NrOfHands = 500,
-                PokerClubId = 1,
+                PokerClubId = Guid.NewGuid().ToString(),
                 Result = -5000,
                 SessionDate = new DateTime(2023, 6, 1)
             };
             var s2 = new PokerSession
             {
-                PokerSessionId = 2,
+                id = Guid.NewGuid().ToString(),
                 Comment = "I'm AWESOME",
-                GameTypeId = 1,
-                UserId = 1,
-                StakesId = 2,
-                GameId = 2,
+                GameTypeId = Guid.NewGuid().ToString(),
+                UserId = Guid.NewGuid().ToString(),
+                StakesId = Guid.NewGuid().ToString(),
                 NrOfHands = 2832,
-                PokerClubId = 2,
+                PokerClubId = Guid.NewGuid().ToString(),
                 Result = 12726,
                 SessionDate = new DateTime(2023, 6, 2)
             };
             var s3 = new PokerSession
             {
-                PokerSessionId = 3,
+                id = Guid.NewGuid().ToString(),
                 Comment = "I'm a horse",
-                GameTypeId = 1,
-                StakesId = 1,
-                UserId = 2,
-                GameId = 2,
+                GameTypeId = Guid.NewGuid().ToString(),
+                StakesId = Guid.NewGuid().ToString(),
+                UserId = Guid.NewGuid().ToString(),
                 NrOfHands = 2832,
-                PokerClubId = 2,
+                PokerClubId = Guid.NewGuid().ToString(),
                 Result = 5192,
                 SessionDate = new DateTime(2023, 6, 2)
             };
             var s4 = new PokerSession
             {
-                PokerSessionId = 4,
+                id = Guid.NewGuid().ToString(),
                 Comment = "I'm a grizzly",
-                GameTypeId = 1,
-                StakesId = 1,
-                UserId = 2,
-                GameId = 2,
+                GameTypeId = Guid.NewGuid().ToString(),
+                StakesId = Guid.NewGuid().ToString(),
+                UserId = Guid.NewGuid().ToString(),
                 NrOfHands = 2832,
-                PokerClubId = 2,
+                PokerClubId = Guid.NewGuid().ToString(),
                 Result = 7123,
                 SessionDate = new DateTime(2023, 6, 2)
             };
             var s5 = new PokerSession
             {
-                PokerSessionId = 5,
+                id = Guid.NewGuid().ToString(),
                 Comment = "",
-                GameTypeId = 1,
-                StakesId = 1,
-                UserId = 2,
-                GameId = 2,
+                GameTypeId = Guid.NewGuid().ToString(),
+                StakesId = Guid.NewGuid().ToString(),
+                UserId = Guid.NewGuid().ToString(),
                 NrOfHands = 2832,
-                PokerClubId = 2,
+                PokerClubId = Guid.NewGuid().ToString(),
                 Result = 7123,
                 SessionDate = new DateTime(2023, 6, 2)
             };
 
             return new List<PokerSession>() { s1, s2, s3, s4, s5 };
         }
-
+        /*
         private static List<User> InitializeMockUsers()
         {
             var e1 = new User
@@ -245,8 +242,8 @@
                 new Country {CountryId = 7, Name = "France"},
                 new Country {CountryId = 8, Name = "Brazil"}
             };
-        }
-    }*/
+        }*/
+    }
 }
 
 

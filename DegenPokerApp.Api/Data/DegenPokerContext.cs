@@ -31,7 +31,7 @@ namespace DegenPokerApp.Api.Data
         private async Task BuildCollection()
         {
             _database = await _client.CreateDatabaseIfNotExistsAsync(databaseName);
-            _container = await _database.CreateContainerIfNotExistsAsync(containerName, "/PokerClubId", 400);
+            _container = await _database.CreateContainerIfNotExistsAsync(containerName, "/UserId", 400);
             _container = _client.GetContainer(databaseName, containerName);
         }
 
@@ -62,23 +62,23 @@ namespace DegenPokerApp.Api.Data
 
         public async Task<PokerClub> AddPokerClub(PokerClub pokerClub)
         {
-            return await _container.UpsertItemAsync<PokerClub>(pokerClub, new PartitionKey(pokerClub.PokerClubId));
+            return await _container.UpsertItemAsync<PokerClub>(pokerClub, new PartitionKey(pokerClub.UserId));
         }
 
-        public async Task<PokerClub> GetPokerClubDetails(string id, string pokerClubId)
+        public async Task<PokerClub> GetPokerClubDetails(string id, string userId)
         {
 
-            return await _container.ReadItemAsync<PokerClub>(id, new PartitionKey(pokerClubId));
+            return await _container.ReadItemAsync<PokerClub>(id, new PartitionKey(userId));
         }
 
         public async Task<PokerClub> UpdatePokerClub(PokerClub pokerClub)
         {
-            return await _container.UpsertItemAsync(pokerClub, new PartitionKey(pokerClub.PokerClubId));
+            return await _container.UpsertItemAsync(pokerClub, new PartitionKey(pokerClub.UserId));
         }
 
-        internal async Task DeletePokerClub(string id, string pokerClubId)
+        internal async Task DeletePokerClub(string id, string userId)
         {
-            await _container.DeleteItemAsync<PokerClub>(id, new PartitionKey(pokerClubId));
+            await _container.DeleteItemAsync<PokerClub>(id, new PartitionKey(userId));
         }
 
         #endregion

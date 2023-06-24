@@ -13,6 +13,8 @@ namespace DegenPoker.App.Pages
         [Parameter]
         public string PokerClubId { get; set; } = default!;
         public PokerClub PokerClub { get; set; } = new PokerClub();
+        [Parameter]
+        public string UserId { get; set; } = default!;
 
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;
@@ -38,7 +40,7 @@ namespace DegenPoker.App.Pages
             }
             else
             {
-                PokerClub = await PokerClubDataService.GetPokerClubDetails(Id, PokerClubId);
+                PokerClub = await PokerClubDataService.GetPokerClubDetails(Id, UserId);
             }
         }
 
@@ -79,7 +81,7 @@ namespace DegenPoker.App.Pages
 
         protected async Task DeletePokerclub()
         {
-            await PokerClubDataService.DeletePokerClub(PokerClub.id, PokerClub.PokerClubId);
+            await PokerClubDataService.DeletePokerClub(PokerClub.id, PokerClub.UserId);
 
             StatusClass = "alert-success";
             Message = "Deleted successfully";

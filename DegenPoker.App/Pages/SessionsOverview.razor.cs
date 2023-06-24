@@ -13,7 +13,7 @@ namespace DegenPoker.App.Pages
 
         protected override void OnInitialized()
         {
-            // PokerSessions = MockDataService.PokerSessions;
+            PokerSessions = new List<PokerSession> { _selectedSession };
         }
 
         public void ShowQuickViewPopup(PokerSession selectedSession)
