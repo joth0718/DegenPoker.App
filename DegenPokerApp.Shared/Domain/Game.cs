@@ -1,10 +1,9 @@
-﻿using System;
-
-namespace DegenPokerApp.Shared.Domain
+﻿namespace DegenPokerApp.Shared.Domain
 {
-    public enum Game
+    public class Game
     {
-        MTT,
-        Cashgame
+        public string GameId { get; set; } = string.Empty;
+        public string? GameName { get; set; }
     }
 }
+

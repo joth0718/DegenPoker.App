@@ -1,5 +1,4 @@
-﻿using DegenPokerApp.App.Models;
-using DegenPokerApp.Shared.Domain;
+﻿using DegenPokerApp.Shared.Domain;
 using Microsoft.AspNetCore.Components;
 
 namespace DegenPoker.App.Pages
@@ -13,7 +12,7 @@ namespace DegenPoker.App.Pages
 
         protected override Task OnInitializedAsync()
         {
-            Session = MockDataService.PokerSessions.FirstOrDefault(s => s.PokerSessionId == SessionId);
+            // Session = MockDataService.PokerSessions.FirstOrDefault(s => s.PokerSessionId == SessionId);
 
             return base.OnInitializedAsync();
         }

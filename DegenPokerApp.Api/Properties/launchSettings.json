@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "BethanysPieShopHRM.Api": {
+    "DegenPokerApp.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

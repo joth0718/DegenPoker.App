@@ -1,7 +1,6 @@
-﻿using DegenPokerApp.Shared.Domain;
-
-namespace DegenPokerApp.App.Models
+﻿namespace DegenPokerApp.App.Models
 {
+    /*
     public class MockDataService
     {
         private static List<User>? _users = default!;
@@ -247,7 +246,7 @@ namespace DegenPokerApp.App.Models
                 new Country {CountryId = 8, Name = "Brazil"}
             };
         }
-    }
+    }*/
 }
 
 

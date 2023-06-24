@@ -1,0 +1,35 @@
+﻿@page "/pokerclubedit"
+@page "/pokerclubedit/{Id}/{PokerClubId}"
+
+@if (!Saved)
+{
+    <section class="employee-edit">
+        <h1 class="page-title">Details for @PokerClub.PokerClubName</h1>
+
+        <EditForm Model="@PokerClub" OnValidSubmit="@HandleValidSubmit"
+                  OnInvalidSubmit="@HandleInvalidSubmit">
+            <div class="row mb-3">
+                <label for="pokerClubName" class="col-form-label col-md-3">Name: </label>
+                <div class="col-md-8">
+                    <InputText id="pokerClubName" class="form-control col-md-8" @bind-Value="@PokerClub.PokerClubName" placeholder="Enter name"></InputText>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary me-1">Save Pokerclub</button>
+
+            @if (PokerClub.id != "new")
+            {
+                <button type="button" class="btn btn-danger my-1" @onclick="@DeletePokerclub">
+                    Delete
+                </button>
+            }
+
+
+            <button type="button" class="btn btn-outline-primary" @onclick="@NavigateToOverview">Cancel</button>
+        </EditForm>
+    </section>
+}
+else
+{
+    <div class="alert @StatusClass">@Message</div>
+    <button class="btn btn-outline-primary ms-1" @onclick="@NavigateToOverview">Back to overview</button>
+}

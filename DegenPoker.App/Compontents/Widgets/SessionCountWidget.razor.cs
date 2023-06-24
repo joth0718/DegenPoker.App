@@ -1,5 +1,4 @@
-﻿using DegenPokerApp.App.Models;
-namespace DegenPoker.App.Compontents.Widgets;
+﻿namespace DegenPoker.App.Compontents.Widgets;
 
 public partial class SessionCountWidget
 {
@@ -7,6 +6,6 @@ public partial class SessionCountWidget
 
     protected override void OnInitialized()
     {
-        PokerSessionCounter = MockDataService.PokerSessions.Count;
+        //PokerSessionCounter = DegenPokerAppService.PokerSessions.Count;
     }
 }

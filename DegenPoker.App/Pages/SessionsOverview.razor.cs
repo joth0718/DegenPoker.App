@@ -1,5 +1,4 @@
-﻿using DegenPokerApp.App.Models;
-using DegenPokerApp.Shared.Domain;
+﻿using DegenPokerApp.Shared.Domain;
 
 namespace DegenPoker.App.Pages
 {
@@ -14,7 +13,7 @@ namespace DegenPoker.App.Pages
 
         protected override void OnInitialized()
         {
-            PokerSessions = MockDataService.PokerSessions;
+            // PokerSessions = MockDataService.PokerSessions;
         }
 
         public void ShowQuickViewPopup(PokerSession selectedSession)

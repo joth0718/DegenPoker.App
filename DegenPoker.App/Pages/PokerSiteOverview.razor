@@ -1,4 +1,5 @@
 ﻿@page "/sites"
+@inject NavigationManager _nav;
 
 <h2>Poker Club Overview</h2>
 
@@ -11,16 +12,19 @@ else
     <table class="table table-light">
         <thead class="table-primary">
             <tr>
-                <th>Club Id</th>
-                <th>Club Name</th>
+                <th>
+                    Club Name <a href="@($"pokerclubedit/")" class="btn btn-outline-primary align-self-end">Add Pokerclub</a>
+                </th>
+
+
             </tr>
         </thead>
         <tbody>
             @foreach (var pokerClub in PokerClubs)
             {
                 <tr>
-                    <td>@pokerClub.PokerClubId</td>
                     <td>@pokerClub.PokerClubName</td>
+                    <td><button @onclick="@(() => _nav.NavigateTo($"pokerclubedit/{pokerClub.id}/{pokerClub.PokerClubId}"))">Edit</button></td>
                 </tr>
             }
         </tbody>

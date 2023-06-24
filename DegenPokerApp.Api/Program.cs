@@ -1,29 +1,15 @@
+using DegenPokerApp.Api.Data;
+using DegenPokerApp.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
+    .AddJsonFile("appsettings.Development.json")
     .Build();
 
-var cosmosConnectionString = config["CosmosConnectionString"];
 
-
-
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddDbContextFactory<DegenPokerApp.Api.Data.DegenPokerContext>(optionsBuilder =>
-
-optionsBuilder.UseCosmos(
-    connectionString: cosmosConnectionString,
-    databaseName: "DegenPokerAppDb",
-    cosmosOptionsAction: options =>
-    {
-        options.ConnectionMode(Microsoft.Azure.Cosmos.ConnectionMode.Direct);
-        options.MaxRequestsPerTcpConnection(20);
-        options.MaxTcpConnectionsPerEndpoint(32);
-    }));
-
-builder.Services.AddTransient<DegenPokerApp.Api.Service.DegenPokerAppService>();
 
 builder.Services.AddCors(options =>
 {
@@ -31,13 +17,26 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddHttpClient();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddDbContext<DegenPokerContext>(optionsbuilder =>
+optionsbuilder.UseCosmos(
+    connectionString: config["CosmosDB:URL"],
+    databaseName: config["DatabaseName"],
+    cosmosOptionsAction: options =>
+    {
+        options.ConnectionMode(Microsoft.Azure.Cosmos.ConnectionMode.Direct);
+        options.MaxRequestsPerTcpConnection(20);
+        options.MaxTcpConnectionsPerEndpoint(32);
+    }));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<IPokerClubRepository, PokerClubRepository>();
 
+var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
