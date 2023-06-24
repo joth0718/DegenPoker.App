@@ -23,10 +23,10 @@ namespace DegenPokerApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}/{pokerClubId}")]
-        public async Task<IActionResult> GetPokerClubDetails(string id, string pokerClubId)
+        [HttpGet("{id}/{userId}")]
+        public async Task<IActionResult> GetPokerClubDetails(string id, string userId)
         {
-            var result = await _pokerClubRepository.GetPokerClubDetails(id, pokerClubId);
+            var result = await _pokerClubRepository.GetPokerClubDetails(id, userId);
             return Ok(result);
         }
 
@@ -66,10 +66,10 @@ namespace DegenPokerApp.Api.Controllers
             return Ok(updatedPokerClub);
         }
 
-        [HttpDelete("{id}/{pokerClubId}")]
-        public async Task DeletePokerClub(string id, string pokerClubId)
+        [HttpDelete("{id}/{userId}")]
+        public async Task DeletePokerClub(string id, string userId)
         {
-            await _pokerClubRepository.DeletePokerClub(id, pokerClubId);
+            await _pokerClubRepository.DeletePokerClub(id, userId);
         }
     }
 }

@@ -22,9 +22,9 @@ namespace DegenPokerApp.Api.Models
             return await _context.AddPokerClub(pokerClub);
         }
 
-        public async Task<PokerClub> GetPokerClubDetails(string id, string pokerClubId)
+        public async Task<PokerClub> GetPokerClubDetails(string id, string userId)
         {
-            return await _context.GetPokerClubDetails(id, pokerClubId);
+            return await _context.GetPokerClubDetails(id, userId);
         }
 
         public async Task<PokerClub> UpdatePokerClub(PokerClub pokerClub)
@@ -32,9 +32,9 @@ namespace DegenPokerApp.Api.Models
             return await _context.UpdatePokerClub(pokerClub);
         }
 
-        public async Task DeletePokerClub(string id, string pokerClubId)
+        public async Task DeletePokerClub(string id, string userId)
         {
-            await _context.DeletePokerClub(id, pokerClubId);
+            await _context.DeletePokerClub(id, userId);
         }
     }
 

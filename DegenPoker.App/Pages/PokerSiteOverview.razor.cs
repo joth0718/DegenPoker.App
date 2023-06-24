@@ -12,6 +12,8 @@ namespace DegenPoker.App.Pages
         public string PokerClubId { get; set; } = default!;
         [Parameter]
         public string Id { get; set; } = default!;
+        [Parameter]
+        public string UserId { get; set; } = default!;
         public List<PokerClub>? PokerClubs { get; set; } = default!;
 
 
