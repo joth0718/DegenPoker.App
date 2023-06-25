@@ -4,7 +4,10 @@
 @if (!Saved)
 {
     <section class="employee-detail">
-        <h1 class="page-title">Details for session on @Session.SessionDate.ToShortDateString(); at @Session.PokerClubId</h1>
+        <h1 class="page-title">
+            Details for session on @Session.SessionDate.ToShortDateString()
+            at @Clubs.FirstOrDefault(c => c.PokerClubId == Session.PokerClubId).PokerClubName
+        </h1>
         <br />
         <EditForm Model="@Session" OnValidSubmit="@HandleValidSubmit"
                   OnInvalidSubmit="HandleInvalidSubmit">
@@ -21,7 +24,14 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Club</label>
                             <div class="col-sm-8">
-                                <InputText id="pokerClubName" class="form-control col-md-8" @bind-Value="@Session.PokerClubId" placeholder="Enter PokerClub"></InputText>
+                                <div class="col-sm-8">
+                                    <InputSelect id="pokerClub" @bind-Value="@Session.PokerClubId" class="form-control">
+                                        @foreach (var club in Clubs)
+                                        {
+                                            <option value="@club.PokerClubId">@club.PokerClubName</option>
+                                        }
+                                    </InputSelect>
+                                </div>
                             </div>
                         </div>
 

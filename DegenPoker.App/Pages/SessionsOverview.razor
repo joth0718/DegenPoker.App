@@ -4,7 +4,7 @@
 <PageTitle>@Title</PageTitle>
 <h2>Sessions Overview</h2>
 
-@if (PokerSessions == null)
+@if (PokerSessions == null || Clubs == null)
 {
     <p><em>Loading ... </em></p>
 }
@@ -26,8 +26,8 @@ else
             @foreach (var pokerSession in PokerSessions)
             {
                 <tr>
-                    <td>@pokerSession.SessionDate</td>
-                    <td>@pokerSession.PokerClubId</td>
+                    <td>@pokerSession.SessionDate.ToShortDateString()</td>
+                    <td>@Clubs.FirstOrDefault(ci => ci.PokerClubId == pokerSession.PokerClubId).PokerClubName</td>
                     <td>@pokerSession.NrOfHands</td>
                     <td>@pokerSession.Result</td>
                     <td>@pokerSession.Comment</td>
