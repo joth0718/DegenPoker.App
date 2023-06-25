@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DegenPokerApp.Api/appsettings.json
+/DegenPokerApp.Api/appsettings.Development.json
