@@ -1,4 +1,6 @@
 ﻿@page "/sessions"
+@inject NavigationManager _nav;
+
 <PageTitle>@Title</PageTitle>
 <h2>Sessions Overview</h2>
 
@@ -8,14 +10,31 @@
 }
 else
 {
-    <QuickViewPopup PokerSession="_selectedSession"></QuickViewPopup>
-    <div class="row">
-        @foreach (var pokerSession in PokerSessions)
-        {
-            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <SessionCard PokerSession="pokerSession" PokerSessionQuickViewClicked="ShowQuickViewPopup"></SessionCard>
-            </div>
-        }
-    </div>
+    <table class="table table-light">
+        <thead class="table-primary">
+            <tr>
+                <th>Session Time</th>
+                <th>Site</th>
+                <th>Hands</th>
+                <th>Result</th>
+                <th>Comment</th>
+
+                <a href="@($"pokerclubedit/")" class="btn btn-outline-primary align-self-end">Add Poker Session</a>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pokerSession in PokerSessions)
+            {
+                <tr>
+                    <td>@pokerSession.SessionDate</td>
+                    <td>@pokerSession.PokerClubId</td>
+                    <td>@pokerSession.NrOfHands</td>
+                    <td>@pokerSession.Result</td>
+                    <td>@pokerSession.Comment</td>
+                    <td><button @onclick="@(() => _nav.NavigateTo($"sessionedit/{pokerSession.id}/{pokerSession.UserId}"))">Edit</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
