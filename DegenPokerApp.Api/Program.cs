@@ -36,6 +36,7 @@ optionsbuilder.UseCosmos(
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IPokerClubRepository, PokerClubRepository>();
 builder.Services.AddScoped<IPokerSessionRepository, PokerSessionRepository>();
+builder.Services.AddScoped<IGameTypeRepository, GameTypeRespository>();
 
 var app = builder.Build();
 

@@ -1,0 +1,32 @@
+﻿@page "/gametypes"
+@inject NavigationManager _nav;
+
+<h2>Game Types Overview</h2>
+
+@if (GameTypes == null)
+{
+    <p><em>Loading ... </em></p>
+}
+else
+{
+    <table class="table table-light">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    Game type <a href="@($"gametypeedit/")" class="btn btn-outline-primary align-self-end">Add Game type</a>
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var gameType in GameTypes)
+            {
+                <tr>
+                    <td>@gameType.GameTypeName</td>
+                    <td><button @onclick="@(() => _nav.NavigateTo($"gametypeedit/{gameType.id}/{gameType.UserId}"))">Edit</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,11 @@
+﻿@page "/gametypeedit"
+@page "/gametypeedit/{Id}/{UserId}"
+
+@if (!Saved)
+{
+}
+else
+{
+    <div class="alert @StatusClass">@Message</div>
+    <button class="btn btn-outline-primary ms-1" @onclick="@NavigateToOverview">Back to overview</button>
+}
