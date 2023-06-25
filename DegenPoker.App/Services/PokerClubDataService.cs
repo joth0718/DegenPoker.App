@@ -13,7 +13,7 @@ namespace DegenPoker.App.Services
             _httpClient = httpClient;
         }
 
-        public async Task<PokerClub> AddPokerClub(PokerClub pokerClub)
+        public async Task<PokerClub> AddOrUpdatePokerClub(PokerClub pokerClub)
         {
             var pokerClubJson =
                 new StringContent(JsonSerializer.Serialize(pokerClub), Encoding.UTF8,
@@ -50,21 +50,5 @@ namespace DegenPoker.App.Services
                 { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<PokerClub> UpdatePokerClub(PokerClub pokerClub)
-        {
-            var pokerClubJson =
-                new StringContent(JsonSerializer.Serialize(pokerClub), Encoding.UTF8,
-                "application/json");
-
-            var response = await _httpClient.PutAsync("api/PokerClub", pokerClubJson);
-
-            if (response.IsSuccessStatusCode)
-            {
-                return await JsonSerializer.DeserializeAsync<PokerClub>(await
-                    response.Content.ReadAsStreamAsync());
-            }
-            return null;
-
-        }
     }
 }

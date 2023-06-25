@@ -42,7 +42,7 @@ namespace DegenPokerApp.Api.Data
 
         public async Task<List<PokerClub>> GetAllPokerClubs()
         {
-            var sqlQueryGetAll = "SELECT * FROM C";
+            var sqlQueryGetAll = "SELECT * FROM C WHERE C.Type=\"PokerClub\"";
             QueryDefinition queryDefinition = new QueryDefinition(sqlQueryGetAll);
 
             FeedIterator<PokerClub> queryResultSetIterator = _container.GetItemQueryIterator<PokerClub>(queryDefinition);
@@ -60,7 +60,7 @@ namespace DegenPokerApp.Api.Data
             return pokerClubs;
         }
 
-        public async Task<PokerClub> AddPokerClub(PokerClub pokerClub)
+        public async Task<PokerClub> AddOrUpdatePokerClub(PokerClub pokerClub)
         {
             return await _container.UpsertItemAsync<PokerClub>(pokerClub, new PartitionKey(pokerClub.UserId));
         }
@@ -88,7 +88,7 @@ namespace DegenPokerApp.Api.Data
 
         internal async Task<IEnumerable<PokerSession>> GetAllPokerSessions()
         {
-            var sqlQueryGetAll = "SELECT * FROM C";
+            var sqlQueryGetAll = "SELECT * FROM C WHERE C.Type=\"PokerSession\"";
             QueryDefinition queryDefinition = new QueryDefinition(sqlQueryGetAll);
 
             FeedIterator<PokerSession> queryResultSetIterator = _container.GetItemQueryIterator<PokerSession>(queryDefinition);
@@ -107,7 +107,18 @@ namespace DegenPokerApp.Api.Data
 
         internal async Task<PokerSession> GetPokerSessionDetails(string id, string userId)
         {
-            return await _container.ReadItemAsync<PokerSession>(id, new PartitionKey(userId));
+            var result = await _container.ReadItemAsync<PokerSession>(id, new PartitionKey(userId));
+            return result;
+        }
+
+        internal async Task<PokerSession> AddOrUpdatePokerSession(PokerSession session)
+        {
+            return await _container.UpsertItemAsync<PokerSession>(session, new PartitionKey(session.UserId));
+        }
+
+        internal async Task DeletePokerSession(string id, string userId)
+        {
+            await _container.DeleteItemAsync<PokerSession>(id, new PartitionKey(userId));
         }
         #endregion
     }

@@ -31,7 +31,7 @@ namespace DegenPokerApp.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePokerClub([FromBody] PokerClub pokerClub)
+        public async Task<IActionResult> AddOrUpdatePokerClub([FromBody] PokerClub pokerClub)
         {
             if (pokerClub == null)
                 return BadRequest();
@@ -43,28 +43,11 @@ namespace DegenPokerApp.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var createdPokerClub = await _pokerClubRepository.CreatePokerClub(pokerClub);
+            var createdPokerClub = await _pokerClubRepository.AddOrUpdatePokerClub(pokerClub);
 
             return Created("pokerclub", createdPokerClub);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdatePokerClub([FromBody] PokerClub pokerClub)
-        {
-            if (pokerClub == null)
-                return BadRequest();
-
-            if (pokerClub.PokerClubName == string.Empty)
-            {
-                ModelState.AddModelError("Pokerclub Name", "The name shouldn't be empty");
-            }
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var updatedPokerClub = await _pokerClubRepository.UpdatePokerClub(pokerClub);
-
-            return Ok(updatedPokerClub);
-        }
 
         [HttpDelete("{id}/{userId}")]
         public async Task DeletePokerClub(string id, string userId)

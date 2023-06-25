@@ -17,19 +17,14 @@ namespace DegenPokerApp.Api.Models
             return await _context.GetAllPokerClubs();
         }
 
-        public async Task<PokerClub> CreatePokerClub(PokerClub pokerClub)
+        public async Task<PokerClub> AddOrUpdatePokerClub(PokerClub pokerClub)
         {
-            return await _context.AddPokerClub(pokerClub);
+            return await _context.AddOrUpdatePokerClub(pokerClub);
         }
 
         public async Task<PokerClub> GetPokerClubDetails(string id, string userId)
         {
             return await _context.GetPokerClubDetails(id, userId);
-        }
-
-        public async Task<PokerClub> UpdatePokerClub(PokerClub pokerClub)
-        {
-            return await _context.UpdatePokerClub(pokerClub);
         }
 
         public async Task DeletePokerClub(string id, string userId)

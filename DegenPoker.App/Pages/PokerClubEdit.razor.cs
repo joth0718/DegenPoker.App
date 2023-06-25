@@ -35,7 +35,8 @@ namespace DegenPoker.App.Pages
                     id = Guid.NewGuid().ToString(),
                     PokerClubId = Guid.NewGuid().ToString(),
                     PokerClubName = "",
-                    UserId = Guid.NewGuid().ToString()
+                    UserId = Guid.NewGuid().ToString(),
+                    Type = "PokerClub"
                 };
             }
             else
@@ -48,28 +49,18 @@ namespace DegenPoker.App.Pages
         {
             Saved = false;
 
-            if (PokerClub.PokerClubId.Equals("new"))
+            var addedPokerClub = await PokerClubDataService.AddOrUpdatePokerClub(PokerClub);
+            if (addedPokerClub != null)
             {
-                var addedPokerClub = await PokerClubDataService.AddPokerClub(PokerClub);
-                if (addedPokerClub != null)
-                {
-                    StatusClass = "alert-success";
-                    Message = "New Pokerclub added successfully.";
-                    Saved = true;
-                }
-                else
-                {
-                    StatusClass = "alert-danger";
-                    Message = "Somethign went wrong adding the new pokerclub. Please try again.";
-                    Saved = false;
-                }
+                StatusClass = "alert-success";
+                Message = "New Pokerclub added/updated successfully.";
+                Saved = true;
             }
             else
             {
-                await PokerClubDataService.UpdatePokerClub(PokerClub);
-                StatusClass = "alert-success";
-                Message = "Pokerclub updated successfully.";
-                Saved = true;
+                StatusClass = "alert-danger";
+                Message = "Somethign went wrong adding/updating the new pokerclub. Please try again.";
+                Saved = false;
             }
         }
 

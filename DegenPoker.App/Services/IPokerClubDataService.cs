@@ -6,8 +6,7 @@ namespace DegenPoker.App.Services
     {
         Task<IEnumerable<PokerClub>> GetAllPokerClubs();
         Task<PokerClub> GetPokerClubDetails(string id, string userId);
-        Task<PokerClub> AddPokerClub(PokerClub pokerClub);
-        Task<PokerClub> UpdatePokerClub(PokerClub pokerClub);
+        Task<PokerClub> AddOrUpdatePokerClub(PokerClub pokerClub);
         Task DeletePokerClub(string id, string userId);
     }
 }

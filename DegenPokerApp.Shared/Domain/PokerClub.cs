@@ -13,5 +13,7 @@ namespace DegenPokerApp.Shared.Domain
         public string UserId { get; set; } = string.Empty;
         public string PokerClubName { get; set; } = string.Empty;
 
+        public string Type = nameof(PokerClub);
+
     }
 }
