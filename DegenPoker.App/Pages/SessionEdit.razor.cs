@@ -9,7 +9,7 @@ namespace DegenPoker.App.Pages
         [Inject]
         public IPokerSessionDataService SessionDataService { get; set; } = default!;
         [Inject]
-        public IPokerClubDataService ClubDataService { get; set; }
+        public IPokerClubDataService ClubDataService { get; set; } = default!;
         [Parameter]
         public string? Id { get; set; }
         [Parameter]
@@ -19,13 +19,14 @@ namespace DegenPoker.App.Pages
         protected string Message = string.Empty;
         protected string StatusClass = string.Empty;
         protected string selectedPokerClubId = string.Empty;
+        string selectedPokerClubName = string.Empty;
         protected string SelectedPokerClubId
         {
             get => selectedPokerClubId;
             set { selectedPokerClubId = value; }
         }
         protected bool Saved;
-        List<PokerClub> Clubs { get; set; } = default!;
+        List<PokerClub> Clubs { get; set; } = new List<PokerClub>();
         public PokerSession? Session { get; set; } = new PokerSession();
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;
@@ -33,7 +34,9 @@ namespace DegenPoker.App.Pages
         protected async override Task OnInitializedAsync()
         {
             Saved = false;
+
             Clubs = (await ClubDataService.GetAllPokerClubs()).ToList();
+
 
             if (Id == null)
             {
@@ -53,8 +56,8 @@ namespace DegenPoker.App.Pages
             else
             {
                 Session = await SessionDataService.GetPokerSessionDetails(Id, UserId);
-
             }
+            selectedPokerClubName = Clubs.FirstOrDefault(c => c.PokerClubId == Session.PokerClubId).PokerClubName;
         }
 
         protected async Task HandleValidSubmit()

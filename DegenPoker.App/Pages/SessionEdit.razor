@@ -6,7 +6,7 @@
     <section class="employee-detail">
         <h1 class="page-title">
             Details for session on @Session.SessionDate.ToShortDateString()
-            at @Clubs.FirstOrDefault(c => c.PokerClubId == Session.PokerClubId).PokerClubName
+            at @selectedPokerClubName
         </h1>
         <br />
         <EditForm Model="@Session" OnValidSubmit="@HandleValidSubmit"
