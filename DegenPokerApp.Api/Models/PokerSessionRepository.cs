@@ -10,6 +10,17 @@ namespace DegenPokerApp.Api.Models
         {
             _context = context;
         }
+
+        public async Task<PokerSession> AddOrUpdatePokerSession(PokerSession session)
+        {
+            return await _context.AddOrUpdatePokerSession(session);
+        }
+
+        public async Task DeletePokerSession(string id, string userId)
+        {
+            await _context.DeletePokerSession(id, userId);
+        }
+
         public async Task<IEnumerable<PokerSession>> GetAllPokerSessions()
         {
             return await _context.GetAllPokerSessions();
@@ -17,7 +28,8 @@ namespace DegenPokerApp.Api.Models
 
         public async Task<PokerSession> GetPokerSessionDetails(string id, string userId)
         {
-            return await _context.GetPokerSessionDetails(id, userId);
+            var result = await _context.GetPokerSessionDetails(id, userId);
+            return result;
         }
     }
 }

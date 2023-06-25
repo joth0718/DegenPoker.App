@@ -16,7 +16,7 @@
             </div>
             <button type="submit" class="btn btn-primary me-1">Save Pokerclub</button>
 
-            @if (PokerClub.id != "new")
+            @if (PokerClub.PokerClubName != "")
             {
                 <button type="button" class="btn btn-danger my-1" @onclick="@DeletePokerclub">
                     Delete

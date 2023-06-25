@@ -11,5 +11,6 @@
         public int NrOfHands { get; set; }
         public string? Comment { get; set; }
         public decimal Result { get; set; }
+        public string Type = nameof(PokerSession);
     }
 }
