@@ -12,9 +12,9 @@ namespace DegenPoker.App.Pages
         public string? Id { get; set; }
         [Parameter]
         public string PokerClubId { get; set; } = default!;
-        public PokerClub PokerClub { get; set; } = new PokerClub();
         [Parameter]
         public string UserId { get; set; } = default!;
+        public PokerClub PokerClub { get; set; } = new PokerClub();
 
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;

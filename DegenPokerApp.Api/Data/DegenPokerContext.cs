@@ -143,6 +143,20 @@ namespace DegenPokerApp.Api.Data
             return gameTypes;
         }
 
+        internal async Task<GameType> GetGameTypeDetails(string id, string userId)
+        {
+            return await _container.ReadItemAsync<GameType>(id, new PartitionKey(userId));
+        }
+
+        internal async Task<GameType> AddOrUpdateGameType(GameType game)
+        {
+            return await _container.UpsertItemAsync<GameType>(game);
+        }
+
+        internal async Task DeleteGameType(string id, string userId)
+        {
+            await _container.DeleteItemAsync<GameType>(id, new PartitionKey(userId));
+        }
         #endregion
     }
 

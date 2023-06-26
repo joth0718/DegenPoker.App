@@ -8,17 +8,20 @@ namespace DegenPoker.App.Pages
     public partial class GameTypeEdit
     {
         [Parameter]
-        public string? Id { get; set; }
+        public string? Id { get; set; } = default!;
         [Parameter]
-        public GameType? Game { get; set; }
+        public GameType Game { get; set; } = new GameType();
+        [Parameter]
+        public string UserId { get; set; } = default!;
         [Inject]
         public IGameTypeDataService GameTypeDataService { get; set; } = default!;
+        [Inject]
+        public NavigationManager NavigationManager { get; set; } = default!;
 
 
-        protected bool Saved;
         protected string Message = string.Empty;
         protected string StatusClass = string.Empty;
-        List<GameType> GameTypes = new List<GameType>();
+        protected bool Saved;
 
         protected async override Task OnInitializedAsync()
         {
@@ -37,28 +40,28 @@ namespace DegenPoker.App.Pages
             }
             else
             {
-                // Game = await GameTypeDataService.GetPokerSessionDetails(Id, UserId);
+                Game = await GameTypeDataService.GetGameTypeDetails(Id, UserId);
             }
-            // selectedPokerClubName = Clubs.FirstOrDefault(c => c.PokerClubId == Session.PokerClubId).PokerClubName;
         }
 
         protected async Task HandleValidSubmit()
         {
             Saved = false;
 
-            /* var addedPokerSession = await SessionDataService.AddOrUpdatePokerSession(Session);
-             if (addedPokerSession != null)
-             {
-                 StatusClass = "alert-success";
-                 Message = "New PokerSessino added/updated successfully.";
-                 Saved = true;
-             }
-             else
-             {
-                 StatusClass = "alert-danger";
-                 Message = "Somethign went wrong adding/updating the new pokersession. Please try again.";
-                 Saved = false;
-             }*/
+            var addedGameType = await GameTypeDataService.AddOrUpdateGameType(Game);
+            if (addedGameType != null)
+            {
+                StatusClass = "alert-success";
+                Message = "New Game Type added/updated successfully.";
+                Saved = true;
+            }
+            else
+            {
+                StatusClass = "alert-danger";
+                Message = "Somethign went wrong adding/updating the new Game type. Please try again.";
+                Saved = false;
+            }
+
         }
         protected async Task HandleInvalidSubmit()
         {
@@ -66,9 +69,9 @@ namespace DegenPoker.App.Pages
             Message = "There are some validation errors. Please try again.";
         }
 
-        protected async Task DeletePokerSession()
+        protected async Task DeleteGameType()
         {
-            //   await SessionDataService.DeletePokerSession(Session.id, Session.UserId);
+            await GameTypeDataService.DeletePokerSession(Game.id, Game.UserId);
 
             StatusClass = "alert-success";
             Message = "Deleted successfully";
@@ -77,7 +80,7 @@ namespace DegenPoker.App.Pages
 
         protected void NavigateToOverview()
         {
-            //    NavigationManager.NavigateTo("/sessions");
+            NavigationManager.NavigateTo("/gametypes");
         }
     }
 }
