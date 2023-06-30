@@ -4,44 +4,43 @@ using Microsoft.AspNetCore.Components;
 
 namespace DegenPoker.App.Pages
 {
-    public partial class PokerClubEdit
+
+    public partial class GameTypeEdit
     {
-        [Inject]
-        public IPokerClubDataService PokerClubDataService { get; set; } = default!;
         [Parameter]
-        public string? Id { get; set; }
+        public string? Id { get; set; } = default!;
         [Parameter]
-        public string PokerClubId { get; set; } = default!;
+        public GameType Game { get; set; } = new GameType();
         [Parameter]
         public string UserId { get; set; } = default!;
-        public PokerClub PokerClub { get; set; } = new PokerClub();
-
+        [Inject]
+        public IGameTypeDataService GameTypeDataService { get; set; } = default!;
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;
+
 
         protected string Message = string.Empty;
         protected string StatusClass = string.Empty;
         protected bool Saved;
 
-
         protected async override Task OnInitializedAsync()
         {
             Saved = false;
 
+
             if (Id == null)
             {
-                PokerClub = new PokerClub
+                Game = new GameType
                 {
                     id = Guid.NewGuid().ToString(),
-                    PokerClubId = Guid.NewGuid().ToString(),
-                    PokerClubName = "",
                     UserId = Guid.NewGuid().ToString(),
-                    Type = "PokerClub"
+                    GameTypeName = string.Empty,
+                    Type = "GameType"
                 };
             }
             else
             {
-                PokerClub = await PokerClubDataService.GetPokerClubDetails(Id, UserId);
+                Game = await GameTypeDataService.GetGameTypeDetails(Id, UserId);
             }
         }
 
@@ -49,30 +48,30 @@ namespace DegenPoker.App.Pages
         {
             Saved = false;
 
-            var addedPokerClub = await PokerClubDataService.AddOrUpdatePokerClub(PokerClub);
-            if (addedPokerClub != null)
+            var addedGameType = await GameTypeDataService.AddOrUpdateGameType(Game);
+            if (addedGameType != null)
             {
                 StatusClass = "alert-success";
-                Message = "New Pokerclub added/updated successfully.";
+                Message = "New Game Type added/updated successfully.";
                 Saved = true;
             }
             else
             {
                 StatusClass = "alert-danger";
-                Message = "Somethign went wrong adding/updating the new pokerclub. Please try again.";
+                Message = "Somethign went wrong adding/updating the new Game type. Please try again.";
                 Saved = false;
             }
-        }
 
+        }
         protected async Task HandleInvalidSubmit()
         {
             StatusClass = "alert-danger";
             Message = "There are some validation errors. Please try again.";
         }
 
-        protected async Task DeletePokerclub()
+        protected async Task DeleteGameType()
         {
-            await PokerClubDataService.DeletePokerClub(PokerClub.id, PokerClub.UserId);
+            await GameTypeDataService.DeletePokerSession(Game.id, Game.UserId);
 
             StatusClass = "alert-success";
             Message = "Deleted successfully";
@@ -81,7 +80,7 @@ namespace DegenPoker.App.Pages
 
         protected void NavigateToOverview()
         {
-            NavigationManager.NavigateTo("/sites");
+            NavigationManager.NavigateTo("/gametypes");
         }
     }
 }

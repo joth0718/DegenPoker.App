@@ -11,6 +11,8 @@ builder.Services.AddHttpClient<IPokerSessionDataService, PokerSessionDataService
 client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 builder.Services.AddHttpClient<IPokerClubDataService, PokerClubDataService>(client =>
 client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+builder.Services.AddHttpClient<IGameTypeDataService, GameTypeDataService>(client =>
+client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 
 
 await builder.Build().RunAsync();

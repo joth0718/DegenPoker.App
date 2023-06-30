@@ -2,7 +2,10 @@
 {
     public class GameType
     {
-        public string GameTypeId { get; set; } = string.Empty;
+        public string id { get; set; } = default!;
+        public string Type { get; set; } = "GameType";
         public string? GameTypeName { get; set; }
+        public string UserId { get; set; } = default!;
+
     }
 }

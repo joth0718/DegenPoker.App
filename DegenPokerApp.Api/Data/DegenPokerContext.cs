@@ -120,6 +120,43 @@ namespace DegenPokerApp.Api.Data
         {
             await _container.DeleteItemAsync<PokerSession>(id, new PartitionKey(userId));
         }
+
+        #endregion
+
+        #region GameTypes
+        internal async Task<IEnumerable<GameType>> GetAllGameTypes()
+        {
+            var sqlQueryGetAll = "SELECT * FROM C WHERE C.Type=\"GameType\"";
+            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryGetAll);
+
+            FeedIterator<GameType> queryResultSetIterator = _container.GetItemQueryIterator<GameType>(queryDefinition);
+            List<GameType> gameTypes = new List<GameType>();
+
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                FeedResponse<GameType> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (GameType gameType in currentResultSet)
+                {
+                    gameTypes.Add(gameType);
+                }
+            }
+            return gameTypes;
+        }
+
+        internal async Task<GameType> GetGameTypeDetails(string id, string userId)
+        {
+            return await _container.ReadItemAsync<GameType>(id, new PartitionKey(userId));
+        }
+
+        internal async Task<GameType> AddOrUpdateGameType(GameType game)
+        {
+            return await _container.UpsertItemAsync<GameType>(game);
+        }
+
+        internal async Task DeleteGameType(string id, string userId)
+        {
+            await _container.DeleteItemAsync<GameType>(id, new PartitionKey(userId));
+        }
         #endregion
     }
 

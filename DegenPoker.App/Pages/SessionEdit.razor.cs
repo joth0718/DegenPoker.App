@@ -68,7 +68,7 @@ namespace DegenPoker.App.Pages
             if (addedPokerSession != null)
             {
                 StatusClass = "alert-success";
-                Message = "New PokerSessino added/updated successfully.";
+                Message = "New PokerSession added/updated successfully.";
                 Saved = true;
             }
             else

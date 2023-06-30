@@ -1,0 +1,33 @@
+﻿@page "/gametypeedit"
+@page "/gametypeedit/{Id}/{UserId}"
+
+@if (!Saved)
+{
+    <section class="employee-edit">
+        <h1 class="page-title">Details for  @Game.GameTypeName</h1>
+    </section>
+    <EditForm Model="@Game" OnValidSubmit="@HandleValidSubmit"
+              OnInvalidSubmit="@HandleInvalidSubmit">
+        <div class="row mb-3">
+            <label for="gameTypeName" class="col-form-label col-md-3">Name: </label>
+            <div class="col-md-8">
+                <InputText id="gameTypeName" class="form-control col-md-8" @bind-Value="@Game.GameTypeName" placeholder="Enter name"></InputText>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary me-1">Save Game Type</button>
+
+        @if (Id != null)
+        {
+            <button type="button" class="btn btn-danger my-1" @onclick="@DeleteGameType">
+                Delete
+            </button>
+        }
+
+        <button type="button" class="btn btn-outline-primary" @onclick="@NavigateToOverview">Cancel</button>
+    </EditForm>
+}
+else
+{
+    <div class="alert @StatusClass">@Message</div>
+    <button class="btn btn-outline-primary ms-1" @onclick="@NavigateToOverview">Back to overview</button>
+}
